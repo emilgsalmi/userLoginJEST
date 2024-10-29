@@ -2,7 +2,7 @@
   "name": "testuser",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "script.js",
   "directories": {
     "test": "test"
   },
