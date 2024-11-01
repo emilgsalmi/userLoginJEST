@@ -1,4 +1,4 @@
-User Management Program
+# User Management Program
 This is a simple command-line user management program written in JavaScript using Node.js. The program allows users to create accounts, log in, and change their passwords.
 Features:
 Create a new user account.
