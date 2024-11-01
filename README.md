@@ -24,4 +24,3 @@ Login: Log in to an existing account.
 Change Password: Change the password for an existing user.
 Exit: Exit the program.
 
-The programs menu and messages are in swedish

@@ -16,11 +16,11 @@ const userMenu = () => {
                 changePasswordPrompt()
                 break
             case '4':
-                console.log("Avslutar programmet.")
+                console.log("Exit Program.")
                 process.exit(0)
                 break;
             default:
-                console.log("Ogiltigt alternativ. Försök igen.")
+                console.log("Unvalid command, Please try again.")
                 userMenu()
                 break
         }
@@ -29,10 +29,10 @@ const userMenu = () => {
 
 
 const createUserPrompt = () => {
-    console.log("\n--- Skapa Användare ---")
-    process.stdout.write("Användarnamn: ")
+    console.log("\n--- Create User ---")
+    process.stdout.write("Username: ")
     process.stdin.once('data', (username) => {
-        process.stdout.write("Lösenord: ")
+        process.stdout.write("Password: ")
         process.stdin.once('data', (password) => {
             const result = createUser(username.toString().trim(), password.toString().trim())
             console.log(result)
@@ -43,16 +43,16 @@ const createUserPrompt = () => {
 
 
 const loginPrompt = () => {
-    console.log("\n--- Logga In ---")
-    process.stdout.write("Användarnamn: ")
+    console.log("\n--- Login ---")
+    process.stdout.write("Username: ")
     process.stdin.once('data', (username) => {
-        process.stdout.write("Lösenord: ")
+        process.stdout.write("Password: ")
         process.stdin.once('data', (password) => {
             const userExists = users.some(u => u.username === username.toString().trim() && u.password === password.toString().trim())
             if (userExists) {
-                console.log(`Inloggning lyckades för användare: ${username}!`)
+                console.log(`Login successful: ${username}`)
             } else {
-                console.log(`Ogiltigt användarnamn eller lösenord för ${username}.`)
+                console.log(`Unvalid username or password for ${username}.`)
             }
             userMenu()
         })
@@ -61,12 +61,12 @@ const loginPrompt = () => {
 
 
 const changePasswordPrompt = () => {
-    console.log("\n--- Ändra Lösenord ---")
-    process.stdout.write("Användarnamn: ")
+    console.log("\n--- Change Password ---")
+    process.stdout.write("Username: ")
     process.stdin.once('data', (username) => {
-        process.stdout.write("Gammalt Lösenord: ")
+        process.stdout.write("Old Password: ")
         process.stdin.once('data', (oldPassword) => {
-            process.stdout.write("Nytt Lösenord: ")
+            process.stdout.write("New Password: ")
             process.stdin.once('data', (newPassword) => {
                 const result = changePassword(username.toString().trim(), oldPassword.toString().trim(), newPassword.toString().trim())
                 console.log(result)

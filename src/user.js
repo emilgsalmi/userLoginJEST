@@ -9,7 +9,7 @@ const users = []
 
 const createUser = (username, password) => {
     if(users.some(u => u.username === username)){
-        return "Error: Username already exits."
+        return "Error: Username already exists."
     }
 
     const passwordReg = /^(?=.*[0-9])(?=.*[A-Z]).{8,}$/
@@ -19,16 +19,13 @@ const createUser = (username, password) => {
     }
 
     users.push(new User(username, password))
-    return true
+    return (`Username: ${username} has been created`)
 }
 
 const changePassword = (username, oldPassword, newPassword) => {
     const existingUser = users.find(u => u.username === username)
 
     if(!existingUser) return "Error: User does not exist"
-
-    console.log(`Existing password: "${existingUser.password}"`);
-    console.log(`Old password entered: "${oldPassword}"`);
 
     if(existingUser.password.trim() !== oldPassword.trim()) return "Error: Incorrect old password"
 
