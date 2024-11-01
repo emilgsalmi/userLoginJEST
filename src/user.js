@@ -9,7 +9,7 @@ const users = []
 
 const createUser = (username, password) => {
   if (users.some((u) => u.username === username)) {
-   return 'Error: Username already exists.'
+    return 'Error: Username already exists.'
   }
 
   const passwordReg = /^(?=.*[0-9])(?=.*[A-Z]).{8,}$/
@@ -21,7 +21,7 @@ const createUser = (username, password) => {
   users.push(new User(username, password))
   return 'User created successfully.'
 }
-  
+
 const changePassword = (username, oldPassword, newPassword) => {
   const existingUser = users.find((u) => u.username === username)
 
@@ -42,8 +42,7 @@ const changePassword = (username, oldPassword, newPassword) => {
   }
 
   existingUser.password = newPassword.trim()
-return 'Password changed successfully'
+  return 'Password changed successfully'
 }
 
 module.exports = { User, createUser, changePassword, users }
-  
