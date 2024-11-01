@@ -8,7 +8,7 @@ describe('Create User', () => {
 
   it('should create a new user with valid credentials', () => {
     const result = createUser('testUser', 'Password1')
-    expect(result).toBe('Username: testUser has been created')
+    expect(result).toBe('User created successfully.')
     expect(users.length).toBe(1)
     expect(users[0].username).toBe('testUser')
   })
