@@ -1,48 +1,28 @@
-class User {
-    constructor(username, password) {
-      this.username = username
-      this.password = password
-    }
+const users = []
+
+function createUser(username, password) {
+  const userExists = users.some((u) => u.username === username)
+  if (userExists) {
+    return 'User already exists.'
   }
   
-  const users = []
+  users.push({ username, password })
+  return 'User created successfully.'
+}
+
+function changePassword(username, oldPassword, newPassword) {
+  const user = users.find((u) => u.username === username && u.password === oldPassword)
   
-  const createUser = (username, password) => {
-    if (users.some((u) => u.username === username)) {
-      return 'Error: Username already exists.'
-    }
-  
-    const passwordReg = /^(?=.*[0-9])(?=.*[A-Z]).{8,}$/
-  
-    if (!passwordReg.test(password)) {
-      return 'Error: Password does not meet requirements'
-    }
-  
-    users.push(new User(username, password));
-    return `Username: ${username} has been created`
+  if (!user) {
+    return 'Invalid username or password.'
   }
   
-  const changePassword = (username, oldPassword, newPassword) => {
-    const existingUser = users.find((u) => u.username === username)
-  
-    if (!existingUser) return 'Error: User does not exist'
-  
-    if (existingUser.password.trim() !== oldPassword.trim()) {
-      return 'Error: Incorrect old password'
-    }
-  
-    if (oldPassword.trim() === newPassword.trim()) {
-      return 'Error: New password cannot be the same as the old password'
-    }
-  
-    const passwordReg = /^(?=.*[0-9])(?=.*[A-Z]).{8,}$/
-    if (!passwordReg.test(newPassword.trim())) {
-      return 'Error: New password does not meet requirements'
-    }
-  
-    existingUser.password = newPassword.trim()
-    return 'Password changed successfully'
-  };
-  
-  module.exports = { User, createUser, changePassword, users }
-  
+  user.password = newPassword
+  return 'Password changed successfully.'
+}
+
+module.exports = {
+  createUser,
+  changePassword,
+  users
+}
